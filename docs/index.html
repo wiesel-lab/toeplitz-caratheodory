@@ -3,16 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- ======================================================================
-     LAB PROJECT PAGE TEMPLATE
-     Fill in every {{PLACEHOLDER}}. Put images in docs/static/.
-     Enable: repo Settings -> Pages -> Deploy from branch -> main, /docs
-====================================================================== -->
-<title>{{PAPER TITLE}}</title>
-<meta name="description" content="{{One-line description of the paper}}">
+<title>The Optimization Landscape of Carathéodory Decomposition of Toeplitz Covariances</title>
+<meta name="description" content="Joint amplitude-frequency optimization of the Carathéodory decomposition has a benign population landscape, and overparameterization speeds up gradient descent for Toeplitz covariance estimation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<!-- Optional math: write \( ... \) inline or $$ ... $$ for display equations. -->
 <script>
   window.MathJax = {
     tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
@@ -27,7 +21,7 @@
     --muted: #5b6472;
     --paper: #ffffff;
     --wash: #f5f6f8;
-    --accent: #1d4ed8;      /* link/button color — change to your lab color */
+    --accent: #1d4ed8;
     --rule: #e3e6ea;
     --maxw: 780px;
   }
@@ -82,6 +76,7 @@
   section p + p { margin-top: 14px; }
   section figure.teaser { margin: 24px 0 4px; }
   section figure.teaser + p { margin-top: 24px; }
+  section figure.narrow img { max-width: 440px; }
 
   .abstract { background: var(--wash); border-radius: 10px; padding: 24px 28px; margin: 6px 0; }
 
@@ -109,57 +104,104 @@
 <body>
 
 <header class="wrap">
-  <h1>{{PAPER TITLE}}</h1>
+  <h1>The Optimization Landscape of Carathéodory Decomposition of Toeplitz Covariances</h1>
   <p class="authors">
-    <a href="{{AUTHOR1_URL}}">{{Author One}}</a><sup>1</sup>,
-    <a href="{{AUTHOR2_URL}}">{{Author Two}}</a><sup>1</sup>
+    Daniel Busbib<sup>1</sup>,
+    <a href="https://www.cs.huji.ac.il/~amiw/">Ami Wiesel</a><sup>1</sup>
   </p>
-  <p class="affil"><sup>1</sup>{{Affiliation / Lab name, University}}</p>
-  <p class="venue">{{Venue, Year}}</p>
+  <p class="affil"><sup>1</sup>School of Computer Science and Engineering, The Hebrew University of Jerusalem</p>
+  <p class="venue">arXiv preprint arXiv:2511.01605</p>
 
   <nav class="links">
-    <a href="{{ARXIV_LINK}}">Paper</a>
-    <a href="{{GITHUB_REPO_LINK}}">Code</a>
-    <a href="{{DOI_LINK}}">Published version</a>
-    <!-- optional: <a href="{{POSTER_LINK}}">Poster</a> <a href="{{VIDEO_LINK}}">Video</a> -->
+    <a href="https://arxiv.org/abs/2511.01605">Paper (arXiv)</a>
+    <a href="https://github.com/wiesel-lab/toeplitz-caratheodory">Code</a>
   </nav>
 
   <figure class="teaser">
-    <img src="static/teaser.png" alt="{{Teaser figure alt text}}">
-    <figcaption>{{One-sentence caption for the teaser figure.}}</figcaption>
+    <img src="static/teaser.png" alt="Success rate of gradient descent versus the iteration budget for different numbers of atoms K, and the error along the iterations for one hard instance">
+    <figcaption>Population setting, 100 random covariances: (a) the fraction of runs that reach a 1% relative error within a given number of iterations, and (b) the error along the iterations for one hard instance. Every run converges, and a larger K needs fewer iterations.</figcaption>
   </figure>
 </header>
 
 <section class="wrap">
   <h2>Abstract</h2>
   <div class="abstract">
-    <p>{{Abstract copied from the paper.}}</p>
+    <p>Toeplitz covariance estimation is a classical problem in statistical signal
+    processing, yet the geometry of the Gaussian maximum-likelihood objective
+    remains only partially understood. Recent algorithms, including Newton-type,
+    majorization-minimization, and gradient-based methods, indicate that the
+    nonconvex problem can often be globally solved when the number of samples is
+    sufficiently large, but they also reveal a difficult computational landscape.
+    In this work, we study this phenomenon through an overparameterized
+    Carathéodory representation of positive definite Toeplitz covariance matrices,
+    which parameterizes the covariance by the frequencies and amplitudes of a set
+    of steering vectors. A simple example shows that, for any uniform frequency
+    grid, optimizing only the amplitudes can leave a strictly positive error even
+    in the population setting, which motivates optimizing the frequencies together
+    with the amplitudes. Our main result proves that this joint optimization has a
+    benign population landscape: every stationary point that produces a positive
+    definite covariance matrix recovers the true Toeplitz covariance. With finite
+    samples, the same argument shows that every such stationary point is a
+    stationary point of the Toeplitz maximum-likelihood problem. We also prove that
+    gradient descent on this parameterization converges to the true covariance in
+    the population setting, and to the unique maximum likelihood estimate when the
+    sample covariance is close enough to the true covariance. These results do not
+    require overparameterization. Numerically, overparameterization speeds up
+    gradient descent and gives a more accurate estimate for a fixed number of
+    iterations.</p>
   </div>
 </section>
 
 <section class="wrap">
   <h2>Method</h2>
-  <p>{{2–3 accessible paragraphs summarizing the main idea. Add figures with
-     &lt;figure class="teaser"&gt; blocks as needed.}}</p>
+  <p>Every positive definite Toeplitz covariance is a non-negative combination of
+  steering-vector outer products, the Carathéodory decomposition. We parameterize
+  the covariance by \(K \ge P\) such atoms,
+  \(\hat{\mathbf C} = \sum_{k=1}^{K} s(a_k)\,\mathbf v(\omega_k)\mathbf v(\omega_k)^H\),
+  with softplus amplitudes \(s(a_k)\), and we minimize the Gaussian negative
+  log-likelihood over the amplitudes and the frequencies by gradient descent. With
+  \(K &gt; P\) the model is overparameterized.</p>
+  <p>Fixing the frequencies on a grid and optimizing only the amplitudes, as in
+  SPICE-type methods, can fail. For a single source halfway between two grid
+  points, no choice of non-negative amplitudes on the grid represents the true
+  covariance, even in the population setting and with \(K &gt; P\) atoms. Optimizing
+  the frequencies as well removes this error.</p>
+  <figure class="teaser narrow">
+    <img src="static/grid.png" alt="Error of amplitude-only optimization on a fixed grid, followed by joint optimization of the amplitudes and the frequencies">
+    <figcaption>Amplitude-only optimization on a fixed grid stays at a positive error (left of the dashed line). Optimizing the frequencies as well drives the error below \(10^{-3}\) for every \(K\), including \(K = P\).</figcaption>
+  </figure>
+  <p>Our main result is that the joint optimization has a benign population
+  landscape: every stationary point that gives a positive definite covariance
+  recovers the true covariance, for every \(K \ge P\). With finite samples, every
+  such stationary point is a stationary point of the Toeplitz maximum-likelihood
+  problem. Gradient descent converges to the true covariance in the population
+  setting, and to the unique maximum likelihood estimate when the sample
+  covariance is close enough to the true covariance.</p>
 </section>
 
 <section class="wrap">
   <h2>Results</h2>
-  <p>{{Key results, main figure or table as an image.}}</p>
+  <p>The theory already holds at \(K = P\). In the experiments, overparameterization
+  speeds up gradient descent. In the population setting, over 100 random
+  covariances, every run converges, and the median number of iterations to a 1%
+  relative error drops from about 2,550 at \(K = P\) to about 310 at \(K = 4P\).
+  With finite samples, a larger \(K\) reaches the likelihood of a reference maximum
+  likelihood estimate much faster, and the final MSE is similar for all \(K\) and
+  close to the Cramér&ndash;Rao bound.</p>
 </section>
 
 <section class="wrap">
   <h2>Citation</h2>
-<pre class="bibtex">@article{ {{citekey}},
-  title   = { {{PAPER TITLE}} },
-  author  = { {{Author One and Author Two}} },
-  journal = { {{Venue}} },
-  year    = { {{Year}} }
+<pre class="bibtex">@article{busbib2025optimization,
+  title   = {The Optimization Landscape of {Carath\'eodory} Decomposition of {Toeplitz} Covariances},
+  author  = {Busbib, Daniel and Wiesel, Ami},
+  journal = {arXiv preprint arXiv:2511.01605},
+  year    = {2025}
 }</pre>
 </section>
 
 <footer class="wrap">
-  <p><a href="{{LAB_WEBSITE}}">{{Lab name}}</a> · {{University}}</p>
+  <p><a href="https://www.cs.huji.ac.il/~amiw/">Wiesel Lab</a> · The Hebrew University of Jerusalem</p>
 </footer>
 
 </body>

@@ -1,4 +1,2 @@
-# Pin versions when the paper is released, e.g. numpy==1.26.4
-numpy
-scipy
-matplotlib
+numpy==2.4.6
+matplotlib==3.11.0
