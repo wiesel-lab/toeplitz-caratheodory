@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Optimization Landscape of Carathéodory Decomposition of Toeplitz Covariances</title>
-<meta name="description" content="Joint amplitude-frequency optimization of the Carathéodory decomposition has a benign population landscape, and overparameterization speeds up gradient descent for Toeplitz covariance estimation.">
+<meta name="description" content="The nonlinear Carathéodory parameterization adds no stationary points to Toeplitz maximum likelihood, and overparameterization speeds up gradient descent for Toeplitz covariance estimation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <script>
@@ -126,29 +126,30 @@
 <section class="wrap">
   <h2>Abstract</h2>
   <div class="abstract">
-    <p>Toeplitz covariance estimation is a classical problem in statistical signal
-    processing, yet the geometry of the Gaussian maximum-likelihood objective
-    remains only partially understood. Recent algorithms, including Newton-type,
-    majorization-minimization, and gradient-based methods, indicate that the
-    nonconvex problem can often be globally solved when the number of samples is
-    sufficiently large, but they also reveal a difficult computational landscape.
-    In this work, we study this phenomenon through an overparameterized
-    Carathéodory representation of positive definite Toeplitz covariance matrices,
-    which parameterizes the covariance by the frequencies and amplitudes of a set
-    of steering vectors. A simple example shows that, for any uniform frequency
-    grid, optimizing only the amplitudes can leave a strictly positive error even
-    in the population setting, which motivates optimizing the frequencies together
-    with the amplitudes. Our main result proves that this joint optimization has a
-    benign population landscape: every stationary point that produces a positive
-    definite covariance matrix recovers the true Toeplitz covariance. With finite
-    samples, the same argument shows that every such stationary point is a
-    stationary point of the Toeplitz maximum-likelihood problem. We also prove that
-    gradient descent on this parameterization converges to the true covariance in
-    the population setting, and to the unique maximum likelihood estimate when the
-    sample covariance is close enough to the true covariance. These results do not
-    require overparameterization. Numerically, overparameterization speeds up
-    gradient descent and gives a more accurate estimate for a fixed number of
-    iterations.</p>
+    <p>Toeplitz covariance estimation is a classical problem in statistical
+    signal processing, yet the geometry of the Gaussian maximum-likelihood
+    objective remains only partially understood. Recent algorithms, including
+    Newton-type, majorization-minimization, and gradient-based methods, indicate
+    that the nonconvex problem can often be globally solved when the number of
+    samples is sufficiently large, but they also reveal a difficult
+    computational landscape. In this work, we study this phenomenon through an
+    overparameterized Carathéodory representation of positive definite Toeplitz
+    covariance matrices, which parameterizes the covariance by the frequencies
+    and amplitudes of a set of steering vectors. A simple example shows that,
+    for any uniform frequency grid, optimizing only the amplitudes can leave a
+    strictly positive error even in the population setting, which motivates
+    optimizing the frequencies together with the amplitudes. Our main result
+    proves that this nonlinear parameterization adds no stationary points to the
+    Toeplitz maximum-likelihood problem: for any sample covariance, every
+    stationary point that produces a positive definite covariance matrix gives a
+    stationary point of the original problem. In the population setting, every
+    such stationary point therefore recovers the true Toeplitz covariance. We
+    also prove that gradient descent on this parameterization converges to the
+    true covariance in the population setting, and to the unique maximum
+    likelihood estimate when the sample covariance is close enough to the true
+    covariance. These results do not require overparameterization. Numerically,
+    overparameterization speeds up gradient descent and gives a more accurate
+    estimate for a fixed number of iterations.</p>
   </div>
 </section>
 
@@ -170,13 +171,14 @@
     <img src="static/grid.png" alt="Error of amplitude-only optimization on a fixed grid, followed by joint optimization of the amplitudes and the frequencies">
     <figcaption>Amplitude-only optimization on a fixed grid stays at a positive error (left of the dashed line). Optimizing the frequencies as well drives the error below \(10^{-3}\) for every \(K\), including \(K = P\).</figcaption>
   </figure>
-  <p>Our main result is that the joint optimization has a benign population
-  landscape: every stationary point that gives a positive definite covariance
-  recovers the true covariance, for every \(K \ge P\). With finite samples, every
-  such stationary point is a stationary point of the Toeplitz maximum-likelihood
-  problem. Gradient descent converges to the true covariance in the population
-  setting, and to the unique maximum likelihood estimate when the sample
-  covariance is close enough to the true covariance.</p>
+  <p>Our main result is that this nonlinear parameterization adds no stationary
+  points to the Toeplitz maximum-likelihood problem: for every \(K \ge P\) and
+  any sample covariance, every stationary point that produces a positive
+  definite covariance gives a stationary point of the original problem. In the
+  population setting, every such stationary point recovers the true covariance.
+  The covariance iterates of gradient descent converge to the true covariance in
+  the population setting, and to the unique maximum likelihood estimate when the
+  sample covariance is close enough to the true covariance.</p>
 </section>
 
 <section class="wrap">

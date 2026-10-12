@@ -27,17 +27,17 @@ which parameterizes the covariance by the frequencies and amplitudes of a set
 of steering vectors. A simple example shows that, for any uniform frequency
 grid, optimizing only the amplitudes can leave a strictly positive error even
 in the population setting, which motivates optimizing the frequencies together
-with the amplitudes. Our main result proves that this joint optimization has a
-benign population landscape: every stationary point that produces a positive
-definite covariance matrix recovers the true Toeplitz covariance. With finite
-samples, the same argument shows that every such stationary point is a
-stationary point of the Toeplitz maximum-likelihood problem. We also prove that
-gradient descent on this parameterization converges to the true covariance in
-the population setting, and to the unique maximum likelihood estimate when the
-sample covariance is close enough to the true covariance. These results do not
-require overparameterization. Numerically, overparameterization speeds up
-gradient descent and gives a more accurate estimate for a fixed number of
-iterations.
+with the amplitudes. Our main result proves that this nonlinear
+parameterization adds no stationary points to the Toeplitz maximum-likelihood
+problem: for any sample covariance, every stationary point that produces a
+positive definite covariance matrix gives a stationary point of the original
+problem. In the population setting, every such stationary point therefore
+recovers the true Toeplitz covariance. We also prove that gradient descent on
+this parameterization converges to the true covariance in the population
+setting, and to the unique maximum likelihood estimate when the sample
+covariance is close enough to the true covariance. These results do not require
+overparameterization. Numerically, overparameterization speeds up gradient
+descent and gives a more accurate estimate for a fixed number of iterations.
 
 ## The method in a few lines
 

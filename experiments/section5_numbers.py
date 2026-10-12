@@ -85,7 +85,7 @@ def figure3():
 
 
 def section4_d():
-    print('Section IV (d of Theorem 3 in the finite-sample data sets)')
+    print('Section IV (d of Theorem 2 in the finite-sample data sets)')
     ds = []
     for P in [15, 30]:
         for mf in [1, 2, 4, 8]:
