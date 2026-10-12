@@ -15,29 +15,26 @@ Decomposition of Toeplitz Covariances* (arXiv:2511.01605).
 
 ## Abstract
 
-Toeplitz covariance estimation is a classical problem in statistical signal
-processing, yet the geometry of the Gaussian maximum-likelihood objective
-remains only partially understood. Recent algorithms, including Newton-type,
-majorization-minimization, and gradient-based methods, indicate that the
-nonconvex problem can often be globally solved when the number of samples is
-sufficiently large, but they also reveal a difficult computational landscape.
-In this work, we study this phenomenon through an overparameterized
-Carathéodory representation of positive definite Toeplitz covariance matrices,
-which parameterizes the covariance by the frequencies and amplitudes of a set
-of steering vectors. A simple example shows that, for any uniform frequency
-grid, optimizing only the amplitudes can leave a strictly positive error even
-in the population setting, which motivates optimizing the frequencies together
-with the amplitudes. Our main result proves that this nonlinear
-parameterization adds no stationary points to the Toeplitz maximum-likelihood
-problem: for any sample covariance, every stationary point that produces a
-positive definite covariance matrix gives a stationary point of the original
-problem. In the population setting, every such stationary point therefore
-recovers the true Toeplitz covariance. We also prove that gradient descent on
-this parameterization converges to the true covariance in the population
-setting, and to the unique maximum likelihood estimate when the sample
-covariance is close enough to the true covariance. These results do not require
-overparameterization. Numerically, overparameterization speeds up gradient
-descent and gives a more accurate estimate for a fixed number of iterations.
+Toeplitz covariance estimation is a classical signal processing problem, yet
+the geometry of the Gaussian maximum-likelihood objective remains only
+partially understood. Recent Newton-type, majorization-minimization, and
+gradient-based methods often solve the nonconvex problem globally with enough
+samples, but also reveal a difficult computational landscape. We study this
+phenomenon through an overparameterized Carathéodory representation, which
+parameterizes the covariance by the frequencies and amplitudes of steering
+vectors. A simple example shows that, for any uniform frequency grid,
+optimizing only the amplitudes can leave a positive error even in the
+population setting, which motivates optimizing the frequencies as well. Our
+main result proves that this nonlinear parameterization adds no stationary
+points: for any sample covariance, every stationary point with a positive
+definite covariance gives a stationary point of the Toeplitz maximum-likelihood
+problem. In the population setting, every such point therefore recovers the
+true covariance. We also prove that gradient descent converges to the true
+covariance in the population setting, and to the unique maximum likelihood
+estimate when the sample covariance is close enough to the true covariance.
+These results do not require overparameterization. Numerically,
+overparameterization speeds up gradient descent and gives a more accurate
+estimate for a fixed number of iterations.
 
 ## The method in a few lines
 
